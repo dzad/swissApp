@@ -30,7 +30,7 @@ public class User {
 
     public User(JSONObject ob) {
         try {
-            int id = ob.getInt("id");
+            this.id = ob.getInt("id");
             this.name = ob.getString("name");
             this.username = ob.getString("username");
             this.email = ob.getString("email");
