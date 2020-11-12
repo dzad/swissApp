@@ -1,5 +1,8 @@
 package com.swiss4ward.swissapp.models;
 
+import android.util.Log;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Company {
@@ -7,11 +10,13 @@ public class Company {
     private String name, catchPhrase, bs;
 
     public Company(JSONObject ob) {
-
-        this.name = ob.getString("name");
-        this.catchPhrase = ob.getString("catchPhrase");
-        this.bs = ob.getString("bs");
-
+        try {
+            this.name = ob.getString("name");
+            this.catchPhrase = ob.getString("catchPhrase");
+            this.bs = ob.getString("bs");
+        }catch (JSONException je){
+            Log.e("JSONException", "JSONException");
+        }
     }
 
     public Company(String name, String catchPhrase, String bs) {

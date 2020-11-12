@@ -1,5 +1,8 @@
 package com.swiss4ward.swissapp.models;
 
+import android.util.Log;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class User {
@@ -26,18 +29,20 @@ public class User {
     }
 
     public User(JSONObject ob) {
+        try {
+            int id = ob.getInt("id");
+            this.name = ob.getString("name");
+            this.username = ob.getString("username");
+            this.email = ob.getString("email");
+            this.website = ob.getString("website");
+            this.phone = ob.getString("phone");
 
-        int id = ob.getInt("id");
-        this.name = ob.getString("name");
-        this.username = ob.getString("username");
-        this.email = ob.getString("email");
-        this.website = ob.getString("website");
-        this.phone = ob.getString("phone");
+            this.address = new Address(ob.getJSONObject("address"));
 
-        this.address = new Address(ob.getJSONObject("address"));
-
-        this.company = new Company(ob.getJSONObject("company"));
-
+            this.company = new Company(ob.getJSONObject("company"));
+        }catch (JSONException je){
+            Log.e("JSONException", "jsonexception");
+        }
 
     }
 
