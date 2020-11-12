@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SwissApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email:</string>
+    <string name="Address">Address:</string>
+    <string name="Phone">Phone:</string>
+    <string name="Website">Website</string>
+    <string name="company">Company:</string>
+</resources>

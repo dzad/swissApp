@@ -90,11 +90,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnIt
         }
     }
 
-    public void getUsers(){
-
-
-    }
-
 
     protected class myDataTask extends AsyncTask<Void, Void, JSONArray>
     {

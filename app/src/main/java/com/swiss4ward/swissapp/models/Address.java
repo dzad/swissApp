@@ -3,6 +3,8 @@ package com.swiss4ward.swissapp.models;
 import android.graphics.Point;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,5 +81,14 @@ public class Address {
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.street + ", " +
+                this.suite + ", " +
+                this.city + ", " +
+                this.zipCode;
     }
 }
