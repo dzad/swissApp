@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.swiss4ward.swissapp.models.User;
 
 public class UsersSQLiteHelper extends SQLiteOpenHelper {
 
@@ -12,7 +11,7 @@ public class UsersSQLiteHelper extends SQLiteOpenHelper {
             "street TEXT, suite TEXT, city TEXT, zipcode TEXT, x TEXT, y TEXT, " +
             "companyName TEXT, catchPhrase TEXT, bs TEXT, phone TEXT, website TEXT)";
 
-    public UsersSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory fac, int version){
+    public UsersSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory fac, int version) {
         super(context, name, fac, version);
 
     }

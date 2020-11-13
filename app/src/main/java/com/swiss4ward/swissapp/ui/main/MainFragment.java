@@ -1,44 +1,24 @@
 package com.swiss4ward.swissapp.ui.main;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.swiss4ward.swissapp.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.swiss4ward.swissapp.R;
 import com.swiss4ward.swissapp.Skeleton;
 import com.swiss4ward.swissapp.adapters.UserAdapter;
-import com.swiss4ward.swissapp.data.UsersSQLiteHelper;
-import com.swiss4ward.swissapp.models.User;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment{
 
     public interface OnItemSelectedListener{
         public void onItemSelectedListener(int position);

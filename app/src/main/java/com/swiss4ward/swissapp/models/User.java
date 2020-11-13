@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class User {
     private int id;
-    private String name,username,email,website,phone;
+    private String name, username, email, website, phone;
     private Address address;
     private Company company;
 
@@ -40,10 +40,21 @@ public class User {
             this.address = new Address(ob.getJSONObject("address"));
 
             this.company = new Company(ob.getJSONObject("company"));
-        }catch (JSONException je){
+        } catch (JSONException je) {
             Log.e("JSONException", "jsonexception");
         }
 
+    }
+
+    public User() {
+        this.id = -1;
+        this.name = "";
+        this.username = "";
+        this.email = "";
+        this.website = "";
+        this.phone = "";
+        this.address = new Address("", "", "", "", "", "");
+        this.company = new Company("", "", "");
     }
 
     public int getId() {

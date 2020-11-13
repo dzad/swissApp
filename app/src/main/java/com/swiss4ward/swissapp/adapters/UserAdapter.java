@@ -23,9 +23,9 @@ public class UserAdapter extends ArrayAdapter<User> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView==null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(this.getContext())
-                    .inflate(R.layout.item_layout,parent,false);
+                    .inflate(R.layout.item_layout, parent, false);
         }
         TextView userId = convertView.findViewById(R.id.user_id);
         TextView name = convertView.findViewById(R.id.name);

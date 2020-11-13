@@ -1,9 +1,5 @@
 package com.swiss4ward.swissapp;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.swiss4ward.swissapp.data.UsersSQLiteHelper;
 import com.swiss4ward.swissapp.models.User;
 
 import java.util.ArrayList;
@@ -19,9 +15,9 @@ public class Skeleton {
         this.users = new ArrayList<>();
     }
 
-    public static synchronized Skeleton getInstance( ) {
+    public static synchronized Skeleton getInstance() {
         if (instance == null)
-            instance=new Skeleton();
+            instance = new Skeleton();
         return instance;
     }
 
@@ -33,7 +29,7 @@ public class Skeleton {
         this.users = users;
     }
 
-    public void addUser(User u){
+    public void addUser(User u) {
         this.users.add(u);
     }
 }

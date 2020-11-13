@@ -14,7 +14,7 @@ public class Company {
             this.name = ob.getString("name");
             this.catchPhrase = ob.getString("catchPhrase");
             this.bs = ob.getString("bs");
-        }catch (JSONException je){
+        } catch (JSONException je) {
             Log.e("JSONException", "JSONException");
         }
     }

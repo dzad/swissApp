@@ -1,6 +1,5 @@
 package com.swiss4ward.swissapp.models;
 
-import android.graphics.Point;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,7 @@ import org.json.JSONObject;
 
 public class Address {
 
-    private String street, suite, city, zipCode,lat,lng;
+    private String street, suite, city, zipCode, lat, lng;
 
     public Address(JSONObject ob) {
 
@@ -21,7 +20,7 @@ public class Address {
             this.zipCode = ob.getString("zipcode");
             this.lat = ob.getJSONObject("geo").getString("lat");
             this.lng = ob.getJSONObject("geo").getString("lng");
-        }catch (JSONException je){
+        } catch (JSONException je) {
             Log.e("JSONException", "jsonexception");
         }
     }
