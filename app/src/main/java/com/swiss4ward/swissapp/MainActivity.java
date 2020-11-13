@@ -3,6 +3,7 @@ package com.swiss4ward.swissapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
@@ -49,16 +50,32 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnIt
                     .commit();
         }
 
-        UsersSQLiteHelper usersDB = new UsersSQLiteHelper(this, "DBUsers", null, 1);
+        UsersSQLiteHelper usersDB = new UsersSQLiteHelper(this, "DBUsers", null, 2);
         SQLiteDatabase db = usersDB.getWritableDatabase();
-        String[] cols = new String[] {"id","name","username"};
+        String[] cols = new String[] {"id","name","username","email","phone","website",
+                "street", "suite", "city", "zipcode", "x", "y",
+                "companyName", "catchPhrase", "bs"};
         Cursor cursor = db.query("Users", cols, null, null, null, null, null);
         if(cursor.moveToFirst()){
             do{
                 int id = cursor.getInt(0);
                 String name = cursor.getString(1);
                 String username = cursor.getString(2);
-                User user = new User(id,name,username);
+                String email = cursor.getString(3);
+                String phone = cursor.getString(4);
+                String website = cursor.getString(5);
+                String street = cursor.getString(6);
+                String suite = cursor.getString(7);
+                String city = cursor.getString(8);
+                String zipcode = cursor.getString(9);
+                String lat = cursor.getString(10);
+                String lng = cursor.getString(11);
+                String companyName = cursor.getString(12);
+                String catchPhrase = cursor.getString(13);
+                String bs = cursor.getString(14);
+                Address address = new Address(street,suite,city,zipcode,lat,lng);
+                Company company = new Company(companyName,catchPhrase,bs);
+                User user = new User(id,name,username,email,website,phone,address,company);
                 Skeleton.getInstance().addUser(user);
             }while(cursor.moveToNext());
             mmainFragment.onUserAdded();
@@ -86,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnIt
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container, detailFragment);
             transaction.addToBackStack(null);
+
             transaction.commit();
         }
     }
@@ -139,9 +157,33 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnIt
             if(response != null)
             {
                 try {
+                    UsersSQLiteHelper usersDB = new UsersSQLiteHelper(getBaseContext(), "DBUsers", null, 2);
+                    SQLiteDatabase db = usersDB.getWritableDatabase();
                     for (int i=0; i<response.length();i++) {
-                        Skeleton.getInstance().addUser(new User(response.getJSONObject(i)));
+                        User user = new User(response.getJSONObject(i));
+                        Skeleton.getInstance().addUser(user);
+
+                        ContentValues newRegister = new ContentValues();
+                        newRegister.put("id",user.getId());
+                        newRegister.put("name", user.getName());
+                        newRegister.put("username",user.getUsername());
+                        newRegister.put("email",user.getEmail());
+                        newRegister.put("phone",user.getPhone());
+                        newRegister.put("website",user.getWebsite());
+                        newRegister.put("street", user.getAddress().getStreet());
+                        newRegister.put("suite", user.getAddress().getCity());
+                        newRegister.put("city", user.getAddress().getCity());
+                        newRegister.put("zipcode",user.getAddress().getZipCode());
+                        newRegister.put("x",user.getAddress().getLat());
+                        newRegister.put("y",user.getAddress().getLng());
+                        newRegister.put("companyName", user.getCompany().getName());
+                        newRegister.put("catchPhrase",user.getCompany().getCatchPhrase());
+                        newRegister.put("bs", user.getCompany().getBs());
+
+                        db.insert("Users", null, newRegister);
+
                     }
+                    db.close();
                     mmainFragment.onUserAdded();
                     //Log.e("App", "Success: " + response.getString("yourJsonElement") );
                 } catch (JSONException ex) {
