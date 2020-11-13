@@ -10,7 +10,7 @@ public class UsersSQLiteHelper extends SQLiteOpenHelper {
 
     String sqlCreate = "CREATE TABLE Users (id INTEGER, name TEXT, username TEXT, email TEXT, " +
             "street TEXT, suite TEXT, city TEXT, zipcode TEXT, x TEXT, y TEXT, " +
-            "companyName TEXT, catchPhrase TEXT, bs TEXT)";
+            "companyName TEXT, catchPhrase TEXT, bs TEXT, phone TEXT, website TEXT)";
 
     public UsersSQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory fac, int version){
         super(context, name, fac, version);
