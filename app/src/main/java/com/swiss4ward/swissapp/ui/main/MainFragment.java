@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,17 +19,22 @@ import com.swiss4ward.swissapp.R;
 import com.swiss4ward.swissapp.Skeleton;
 import com.swiss4ward.swissapp.adapters.UserAdapter;
 
-public class MainFragment extends Fragment{
+public class MainFragment extends Fragment {
 
-    public interface OnItemSelectedListener{
+
+    ProgressBar mprogressBar;
+
+    public interface OnItemSelectedListener {
         public void onItemSelectedListener(int position);
     }
 
     public void onUserAdded() {
-        Log.e("fragment" , "useradded!");
-        if(adapter!=null){
+        Log.e("fragment", "useradded!");
+        if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
+        if(this.mprogressBar != null)
+            this.mprogressBar.setVisibility(View.GONE);
     }
 
     private MainViewModel mViewModel;
@@ -50,9 +56,9 @@ public class MainFragment extends Fragment{
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try{
+        try {
             mCallback = (OnItemSelectedListener) context;
-        }catch (ClassCastException cce){
+        } catch (ClassCastException cce) {
             throw new ClassCastException(context.toString() + " must implement onItemSelectedListener");
         }
     }
@@ -62,6 +68,7 @@ public class MainFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
+
         myListView = this.getView().findViewById(R.id.users_list);
         adapter = new UserAdapter(getContext(), R.layout.item_layout, Skeleton.getInstance().getUsers());
         myListView.setAdapter(adapter);
@@ -71,7 +78,10 @@ public class MainFragment extends Fragment{
                 mCallback.onItemSelectedListener(i);
             }
         });
-
+        this.mprogressBar = this.getView().findViewById(R.id.progressBar1);
+        if(!Skeleton.getInstance().getUsers().isEmpty()){
+            this.mprogressBar.setVisibility(View.GONE);
+        }
     }
 
 }
