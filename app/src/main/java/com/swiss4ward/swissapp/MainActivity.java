@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnIt
                         newRegister.put("phone", user.getPhone());
                         newRegister.put("website", user.getWebsite());
                         newRegister.put("street", user.getAddress().getStreet());
-                        newRegister.put("suite", user.getAddress().getCity());
+                        newRegister.put("suite", user.getAddress().getSuite());
                         newRegister.put("city", user.getAddress().getCity());
                         newRegister.put("zipcode", user.getAddress().getZipCode());
                         newRegister.put("x", user.getAddress().getLat());
